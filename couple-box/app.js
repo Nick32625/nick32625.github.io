@@ -1,5 +1,5 @@
 import {QUESTIONS,TOPICS,SOURCES} from './questions.js?v=20261019-dedup';
-const API='https://czy-lmj-couple-box.czy-lmj-couple-box-cloudflare.workers.dev';
+const API='https://czy-lmj-couple-box.pages.dev';
 const STORE='czy-lmj-private-box-v1';
 const NAMES={a:'CZY',b:'LMJ'};
 const ANNIVERSARY='2026-10-06';
