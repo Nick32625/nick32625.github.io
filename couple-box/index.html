@@ -3,21 +3,22 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#faf7f2"><meta name="referrer" content="no-referrer">
-<meta name="description" content="每天两道小问题，各自写下答案，再一起读懂彼此。好好说，属于两个人的每日提问箱。">
+<meta name="description" content="每天两道小问题，各自写下答案，再一起读懂彼此。CZY 和 LMJ 的专属提问箱。">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://haohaoshuo-couple-box.wittyglade513.chatgpt.site http://127.0.0.1:43131; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>好好说 · 每日情侣提问箱</title>
+<title>CZY 和 LMJ 的专属提问箱</title>
 <link rel="canonical" href="https://nick32625.github.io/couple-box/">
-<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261019-input">
-<script type="module" src="./app.js?v=20261019-input"></script>
+<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261019-personal">
+<script type="module" src="./app.js?v=20261019-personal"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
 <header class="site-header"><div class="header-inner">
-<a href="./" class="brand" aria-label="好好说首页"><span class="brand-icon">♡</span><span>好好说<small>给两个人的提问箱</small></span></a>
+<a href="./" class="brand" aria-label="CZY 和 LMJ 的提问箱首页"><span class="brand-icon">♡</span><span>CZY &amp; LMJ<small>我们的专属提问箱</small></span></a>
 <nav aria-label="主导航"><button class="nav-tab active" data-view="today">今日两问</button><button class="nav-tab" data-view="library">题库</button><button class="nav-tab" data-view="history">我们的回答</button></nav>
 <button class="account-btn" id="account-btn"><span class="status-dot"></span><span id="account-label">开始我们的故事</span><span class="account-arrow">↗</span></button>
 </div></header>
 <main id="main" tabindex="-1">
+<section class="anniversary-banner" aria-label="我们的恋爱纪念日"><span class="anniversary-heart" aria-hidden="true">♡</span><div><p>CZY &amp; LMJ · 在一起的第 <strong id="relationship-days">—</strong> 天</p><small>从 <time datetime="2026-10-06">2026.10.06</time> 开始，把日子过成我们的故事。</small></div><span class="anniversary-date">10.06</span></section>
 <section class="view" id="view-today" aria-label="今日两问">
 <div class="hero">
 <div class="hero-copy"><p class="eyebrow"><span></span> LITTLE QUESTIONS, CLOSER HEARTS</p><h1>每天两道题，<br>多懂你<span class="accent">一点。</span></h1><p class="hero-desc">把没来得及聊的话，留在这里。<br>各自写下答案，再一起打开彼此的小世界。</p><div class="hero-actions"><button class="btn primary" id="start-btn">打开今天的提问 <span>↗</span></button><span class="hero-note">不用答得完美，真心就好。</span></div></div>
@@ -32,7 +33,7 @@
 <section class="view" id="view-library" aria-label="题库" hidden><div class="page-title"><p class="eyebrow">A LITTLE MORE ABOUT YOU</p><h1>慢慢认识你</h1><p>108 道问题，9 个话题。每天抽出两道，不用一口气聊完。</p></div><div class="library-tools"><label class="search"><span>⌕</span><input type="search" id="question-search" placeholder="找一个想聊的话题…" aria-label="搜索题目"></label><div class="filter-row" id="topic-filters" aria-label="按主题筛选"></div></div><div class="library-count" id="library-count"></div><div class="question-grid" id="question-library"></div><details class="source-details"><summary>题目从哪里来？</summary><div><p>问题参考下列公开资料的主题与对话方法，重新编写为适合日常相处的中文问句，不是原版量表或关系测试。</p><ul id="source-list"></ul></div></details></section>
 <section class="view" id="view-history" aria-label="我们的回答" hidden><div class="page-title"><p class="eyebrow">OUR LITTLE ARCHIVE</p><h1>写给彼此的日子</h1><p>那些认真写下来的话，会留在这里。</p></div><div id="history-content"></div></section>
 </main>
-<footer class="site-footer"><a href="./" class="brand-mini">♡ 好好说</a><p>不急着懂全部，今天多懂一点就好。</p><button class="text-btn" id="help-btn">使用说明与隐私</button></footer>
-<dialog id="modal"><div class="modal-top"><span class="brand-mini">♡ 好好说</span><button class="close-btn" id="close-modal" aria-label="关闭弹窗">×</button></div><div id="modal-body"></div></dialog>
+<footer class="site-footer"><a href="./" class="brand-mini">♡ CZY &amp; LMJ</a><p>不急着懂全部，今天多懂一点就好。</p><button class="text-btn" id="help-btn">使用说明与隐私</button></footer>
+<dialog id="modal"><div class="modal-top"><span class="brand-mini">♡ CZY &amp; LMJ</span><button class="close-btn" id="close-modal" aria-label="关闭弹窗">×</button></div><div id="modal-body"></div></dialog>
 <div id="toast" role="status" aria-live="polite" hidden></div>
 </body></html>
