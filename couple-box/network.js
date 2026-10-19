@@ -1,4 +1,4 @@
-const API='https://haohaoshuo-couple-box.wittyglade513.chatgpt.site';
+const API='https://czy-lmj-couple-box.czy-lmj-couple-box-cloudflare.workers.dev';
 const $=s=>document.querySelector(s);
 function readEntry(){try{const s=JSON.parse(localStorage.getItem('czy-lmj-private-box-v1')||'null');return s?.v===2&&/^[A-Za-z0-9_-]{22}$/.test(s.id)&&/^[A-Za-z0-9_-]{43}$/.test(s.token)&&/^[A-Za-z0-9_-]{43}$/.test(s.key)?s:null;}catch{return null;}}
 async function fingerprint(s){if(!s)return null;const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s.id+':'+s.token));return [...new Uint8Array(bytes)].map(x=>x.toString(16).padStart(2,'0')).join('').slice(0,12);}
