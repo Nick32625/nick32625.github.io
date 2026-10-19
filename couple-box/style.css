@@ -2,3 +2,5 @@
 
 @media(max-width:640px){.answer-input,.form-field input,.form-field textarea,.search input{font-size:16px}.q-card{scroll-margin-top:145px}}
 .account-btn{max-width:180px}#account-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:640px){.header-inner{grid-template-columns:minmax(0,1fr) auto}.account-btn{max-width:150px}}
+
+.answer-preview{display:block;width:100%;min-height:134px;padding:18px;border:1px dashed #d8cbb8;border-radius:8px;background:#fffdfa;color:var(--accent);text-align:left;font-size:14px;line-height:1.9}.answer-grid>div{min-width:0}.answer-input{appearance:auto;-webkit-appearance:textarea;touch-action:auto;cursor:text}

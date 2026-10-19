@@ -348,3 +348,7 @@ export const SOURCES = [
  {title:'The Gottman Institute · Better Conversations',url:'https://www.gottman.com/blog/better-conversations-partner-just-anyone-else/',note:'参考开放式提问和追问感受的表达方式。'},
  {title:'The Gottman Institute · Intimate Conversation',url:'https://www.gottman.com/blog/weekend-homework-assignment-intimate-conversation/',note:'参考表达感受、倾听和澄清理解的练习。'}
 ];
+
+// Keep historical IDs readable; omit overlapping prompts from the active bank.
+const RETIRED_QUESTIONS=new Set(['q12', 'q17', 'q31', 'q33', 'q45', 'q60', 'q68', 'q83', 'q85', 'q95', 'q98', 'q112']);
+QUESTIONS.forEach(q=>{if(RETIRED_QUESTIONS.has(q.id))q.retired=true;});
