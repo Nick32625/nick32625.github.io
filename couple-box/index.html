@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://czy-lmj-couple-box.pages.dev http://127.0.0.1:43131; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>CZY 和 LMJ 的专属提问箱</title>
 <link rel="canonical" href="https://nick32625.github.io/couple-box/">
-<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261019-personal">
-<script type="module" src="./app.js?v=20261019-pages"></script>
+<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261020-whispers">
+<script type="module" src="./app.js?v=20261020-whispers"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
@@ -19,6 +19,28 @@
 </div></header>
 <main id="main" tabindex="-1">
 <section class="anniversary-banner" aria-label="我们的恋爱纪念日"><span class="anniversary-heart" aria-hidden="true">♡</span><div><p>CZY &amp; LMJ · 在一起的第 <strong id="relationship-days">—</strong> 天</p><small>从 <time datetime="2026-10-06">2026.10.06</time> 开始，把日子过成我们的故事。</small></div><span class="anniversary-date">10.06</span></section>
+<div class="little-moments">
+<section class="whispers joy" id="joy" aria-labelledby="joy-title">
+<div class="whisper-heading"><div><h2 id="joy-title">小确幸 <span>只留 24 小时</span></h2><p>被你在意的小瞬间，想让你知道。</p></div><button type="button" class="text-btn" data-whisper-refresh>刷新</button></div>
+<div data-whisper-list></div>
+<details class="whisper-compose"><summary>写一条小确幸</summary><form>
+<label for="joy-input" data-whisper-label>给对方的小确幸</label>
+<textarea id="joy-input" maxlength="600" rows="4" placeholder="今天你做的那件小事，让我开心了好久……" aria-describedby="joy-policy" autocomplete="off"></textarea>
+<div class="whisper-compose-foot"><span data-whisper-count>0 / 600</span><button type="submit" class="btn primary" data-whisper-send>发送</button></div>
+<p id="joy-policy" class="whisper-policy">发送后 24 小时自动消失，不留历史。未发送的文字不会保存。</p>
+</form></details><p class="whisper-status" role="status" data-whisper-status hidden></p>
+</section>
+<section class="whispers grumble" id="grumble" aria-labelledby="grumble-title">
+<div class="whisper-heading"><div><h2 id="grumble-title">小牢骚 <span>只留 24 小时</span></h2><p>一点小情绪，一个小建议，说给你听。</p></div><button type="button" class="text-btn" data-whisper-refresh>刷新</button></div>
+<div data-whisper-list></div>
+<details class="whisper-compose"><summary>写一条小牢骚</summary><form>
+<label for="grumble-input" data-whisper-label>给对方的小牢骚</label>
+<textarea id="grumble-input" maxlength="600" rows="4" placeholder="刚才那件事让我有一点不开心……下次可不可以……" aria-describedby="grumble-policy" autocomplete="off"></textarea>
+<div class="whisper-compose-foot"><span data-whisper-count>0 / 600</span><button type="submit" class="btn primary" data-whisper-send>发送</button></div>
+<p id="grumble-policy" class="whisper-policy">发送后 24 小时自动消失，不留历史。未发送的文字不会保存。</p>
+</form></details><p class="whisper-status" role="status" data-whisper-status hidden></p>
+</section>
+</div>
 <section class="view" id="view-today" aria-label="今日两问">
 <div class="hero">
 <div class="hero-copy"><p class="eyebrow"><span></span> LITTLE QUESTIONS, CLOSER HEARTS</p><h1>每天两道题，<br>多懂你<span class="accent">一点。</span></h1><p class="hero-desc">把没来得及聊的话，留在这里。<br>各自写下答案，再一起打开彼此的小世界。</p><div class="hero-actions"><button class="btn primary" id="start-btn">打开今天的提问 <span>↗</span></button><span class="hero-note">不用答得完美，真心就好。</span></div></div>
