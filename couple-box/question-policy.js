@@ -9,12 +9,13 @@ export const STAGES=[
 ];
 const DEFAULT_STAGE={daily:'start',memory:'memories',support:'closer',love:'start',space:'start',repair:'closer',growth:'closer',intimacy:'closer',future:'future'};
 const OVERRIDES={
- start:[11,19,20,21,23,46,47,49,50,54,57,59,61,64,65,73,74,77,79,81,86,90,104,120],
- closer:[10,13,14,15,16,22,24,25,26,27,29,32,35,42,55,56,58,62,63,67,70,72,75,76,78,80,84,89,91,97,99,102,105,110,113,114,115,116,117,118,119],
+ start:[11,19,20,21,23,46,47,49,50,54,57,59,61,64,65,73,86,90,104,120],
+ closer:[10,13,14,15,16,22,24,25,26,27,29,32,35,42,55,56,58,62,63,67,70,72,74,75,76,77,78,79,80,81,84,89,91,97,99,102,105,110,113,114,115,116,117,118,119],
  memories:[18,36,51,52,53,71,82,106,107],
  future:[66,69,88,92,93,100,103,108,109,111]
 };
 export function policyFor(question){
+ if(question.topic==='intimacy')return {stage:'start',minDay:4};
  const number=Number(question.id.slice(1));
  const stage=STAGES.find(s=>OVERRIDES[s.id]?.includes(number))||STAGES.find(s=>s.id===DEFAULT_STAGE[question.topic]);
  return {stage:stage.id,minDay:stage.minDay};

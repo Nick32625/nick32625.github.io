@@ -1,4 +1,5 @@
-import {policyFor} from './question-policy.js?v=20261021-stages';
+import {QUESTION_GROUPS,EXCLUDED_QUESTIONS,canonicalQuestion} from './question-groups.js?v=20261021-curated';
+import {policyFor} from './question-policy.js?v=20261021-curated';
 // Original Chinese prompts, informed by the conversation principles linked below.
 export const TOPICS = [
   {id:'daily',name:'生活里的你',icon:'☀',color:'peach',intro:'从那些微不足道、却让你开心的小事聊起。'},
@@ -350,8 +351,6 @@ export const SOURCES = [
  {title:'The Gottman Institute · Intimate Conversation',url:'https://www.gottman.com/blog/weekend-homework-assignment-intimate-conversation/',note:'参考表达感受、倾听和澄清理解的练习。'}
 ];
 
-// Keep historical IDs readable; omit overlapping prompts from the active bank.
-const RETIRED_QUESTIONS=new Set(['q12', 'q17', 'q31', 'q33', 'q45', 'q60', 'q68', 'q83', 'q85', 'q95', 'q98', 'q112']);
-QUESTIONS.forEach(q=>{if(RETIRED_QUESTIONS.has(q.id))q.retired=true;});
-
-QUESTIONS.forEach(q=>Object.assign(q,policyFor(q)));
+// Preserve every historical prompt verbatim while consolidating the active pool.
+const retired=new Set([...Object.values(QUESTION_GROUPS).flat(),...EXCLUDED_QUESTIONS]);
+QUESTIONS.forEach(q=>{q.retired=retired.has(q.id);q.canonicalId=canonicalQuestion(q.id);if(q.id==='q73')q.topic='love';Object.assign(q,policyFor(q));});
