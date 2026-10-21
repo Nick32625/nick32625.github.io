@@ -1,7 +1,7 @@
 import {mountPersonalQuestions} from './personal-questions.js?v=20261021-personal';
 import {STAGES,relationshipDay,SCHEDULE_START} from './question-policy.js?v=20261021-depth';
 import {mountWhispers} from './whispers.js?v=20261021-mailbox';
-import {QUESTIONS,TOPICS,SOURCES} from './questions.js?v=20261021-depth';
+import {QUESTIONS,TOPICS,SOURCES} from './questions.js?v=20261021-short';
 const API='https://czy-lmj-couple-box.pages.dev';
 const STORE='czy-lmj-private-box-v1';
 const NAMES={a:'CZY',b:'LMJ'};
