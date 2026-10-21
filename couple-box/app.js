@@ -84,7 +84,7 @@ function renderLibrary(){
  const term=$('#question-search').value.trim(),age=relationshipDay(cnDay());
  const list=QUESTIONS.filter(q=>!q.retired&&(filter==='all'||q.topic===filter)&&(!term||`${q.text} ${q.hint} ${topicById.get(q.topic).name}`.includes(term)));
  const ready=list.filter(q=>q.minDay<=age&&(!q.notBefore||cnDay()>=q.notBefore)).length;
- $('#library-count').textContent=`共 ${list.length} 道题 · 当前阶段已开放 ${ready} 道 · ${cnDay()<SCHEDULE_START?'10 月 22 日起按阶段抽题':'每天随机 2 问，双方答完的题不再抽取'}`;
+ $('#library-count').textContent=`共 ${list.length} 道题 · 当前阶段已开放 ${ready} 道 · 每天随机 2 问，双方答完的题不再抽取`;
  $('#question-library').innerHTML=list.length?STAGES.map(stage=>{
   const items=list.filter(q=>q.stage===stage.id).sort((a,b)=>a.depth-b.depth||a.id.localeCompare(b.id));if(!items.length)return '';
   return `<section class="library-stage"><div class="library-stage-heading"><h2>${stage.name}</h2><span>${stage.range} · ${items.length} 题</span></div><p class="library-stage-description">${stage.description}${age<stage.minDay?' 暂不进入每日抽题，仍可提前浏览。':''}</p><div class="question-grid">${items.map(q=>{const t=topicById.get(q.topic);return `<article class="library-card"><span class="tag ${t.color}">${t.icon} ${t.name}</span><h3>${esc(q.text)}</h3><p>${esc(q.hint)}</p><span class="library-depth">${depths[q.depth]} · ${q.id.toUpperCase()}</span></article>`;}).join('')}</div></section>`;
