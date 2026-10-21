@@ -1,3 +1,4 @@
+import {policyFor} from './question-policy.js?v=20261021-stages';
 // Original Chinese prompts, informed by the conversation principles linked below.
 export const TOPICS = [
   {id:'daily',name:'生活里的你',icon:'☀',color:'peach',intro:'从那些微不足道、却让你开心的小事聊起。'},
@@ -352,3 +353,5 @@ export const SOURCES = [
 // Keep historical IDs readable; omit overlapping prompts from the active bank.
 const RETIRED_QUESTIONS=new Set(['q12', 'q17', 'q31', 'q33', 'q45', 'q60', 'q68', 'q83', 'q85', 'q95', 'q98', 'q112']);
 QUESTIONS.forEach(q=>{if(RETIRED_QUESTIONS.has(q.id))q.retired=true;});
+
+QUESTIONS.forEach(q=>Object.assign(q,policyFor(q)));
