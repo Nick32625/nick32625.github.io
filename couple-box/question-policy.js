@@ -15,7 +15,7 @@ const OVERRIDES={
  future:[66,69,88,92,93,100,103,108,109,111]
 };
 export function policyFor(question){
- if(question.topic==='intimacy')return {stage:'start',minDay:4};
+ if(question.topic==='intimacy')return {stage:'start',minDay:21};
  const number=Number(question.id.slice(1));
  const stage=STAGES.find(s=>OVERRIDES[s.id]?.includes(number))||STAGES.find(s=>s.id===DEFAULT_STAGE[question.topic]);
  return {stage:stage.id,minDay:stage.minDay};
