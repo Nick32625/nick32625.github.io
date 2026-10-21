@@ -1,5 +1,5 @@
 import {QUESTION_GROUPS,EXCLUDED_QUESTIONS,canonicalQuestion} from './question-groups.js?v=20261021-depth';
-import {policyFor} from './question-policy.js?v=20261021-stages';
+import {policyFor} from './question-policy.js?v=20261021-past';
 // Original Chinese wording informed by the public sources below. Historical IDs never get reused.
 export const TOPICS=[
   {
