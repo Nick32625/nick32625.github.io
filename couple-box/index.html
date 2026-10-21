@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://czy-lmj-couple-box.pages.dev http://127.0.0.1:43131; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>CZY 和 LMJ 的专属提问箱</title>
 <link rel="canonical" href="https://nick32625.github.io/couple-box/">
-<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261021-completion">
-<script type="module" src="./app.js?v=20261021-depth"></script>
+<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261021-personal-20261021-completion">
+<script type="module" src="./app.js?v=20261021-personal"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
@@ -29,6 +29,17 @@
 <div class="message error" id="page-error" role="alert" hidden></div>
 <div id="daily-cards" class="daily-cards"><div class="loading-card">正在准备今天的问题…</div></div>
 <div class="gentle-note"><span>✳</span><p>一次只聊一点。可以跳过，可以晚点答，也可以以后改变答案。<br><strong>先理解，再回应；这里没有标准答案。</strong></p></div>
+<section class="whispers personal-questions" id="personal-questions" aria-labelledby="personal-title">
+<div class="whisper-heading"><div><h2 id="personal-title">想问问你 <span>我们的专属问答</span></h2><p>有想了解的，直接问对方。问题和回答会一直留在这里。</p></div><button type="button" class="text-btn" data-personal-refresh>刷新</button></div>
+<details class="whisper-compose personal-compose"><summary>向对方提问</summary><form data-personal-compose>
+<label for="personal-input" data-personal-label>想问对方什么？</label>
+<textarea id="personal-input" maxlength="600" rows="3" placeholder="有件事，我想听听你的想法……"></textarea>
+<div class="whisper-compose-foot"><span data-personal-count>0 / 600</span><button type="submit" class="btn primary" data-personal-send>发送问题</button></div>
+</form></details>
+<div class="filter-row personal-filters" aria-label="筛选专属问答"><button type="button" class="filter-chip selected" data-personal-filter="all" aria-pressed="true">全部问答</button><button type="button" class="filter-chip" data-personal-filter="pending" aria-pressed="false">待我回答 <span data-personal-pending>0</span></button><button type="button" class="filter-chip" data-personal-filter="mine" aria-pressed="false">我提的问题</button></div>
+<p class="whisper-status" role="status" data-personal-status hidden></p><div data-personal-list></div>
+<button type="button" class="text-btn" data-personal-more hidden>查看更多问答</button>
+</section>
 <section class="whispers mailbox" id="mailbox" aria-labelledby="mailbox-title">
 <div class="whisper-heading"><div><h2 id="mailbox-title">留言箱 <span>只留 24 小时</span></h2><p>开心的、在意的，都可以留一句。</p></div><button type="button" class="text-btn" data-whisper-refresh>刷新</button></div>
 <div data-whisper-list></div>
