@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://czy-lmj-couple-box.pages.dev http://127.0.0.1:43131; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>CZY 和 LMJ 的专属提问箱</title>
 <link rel="canonical" href="https://nick32625.github.io/couple-box/">
-<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261021-portrait">
-<script type="module" src="./app.js?v=20261021-past"></script>
+<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261022-retention">
+<script type="module" src="./app.js?v=20261022-retention"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
@@ -41,7 +41,7 @@
 <button type="button" class="text-btn" data-personal-more hidden>查看更多问答</button>
 </section>
 <section class="whispers mailbox" id="mailbox" aria-labelledby="mailbox-title">
-<div class="whisper-heading"><div><h2 id="mailbox-title">留言箱 <span>只留 24 小时</span></h2><p>开心的、在意的，都可以留一句。</p></div><button type="button" class="text-btn" data-whisper-refresh>刷新</button></div>
+<div class="whisper-heading"><div><h2 id="mailbox-title">留言箱 <span>留一句想说的话</span></h2><p>开心的、在意的，都可以留一句。</p></div><button type="button" class="text-btn" data-whisper-refresh>刷新</button></div>
 <div data-whisper-list></div>
 <details class="whisper-compose"><summary>写一条留言</summary><form>
 <label for="mailbox-input" data-whisper-label>给对方的一句话</label>
@@ -52,8 +52,9 @@
 <label><input type="radio" name="message-tone" value="grumble"><span>小在意<small>有一点不舒服</small></span></label>
 <label><input type="radio" name="message-tone" value="serious"><span>认真说说<small>希望你重视这件事</small></span></label>
 </fieldset>
+<div class="retention-picker"><label for="mailbox-retention">保留多久</label><select id="mailbox-retention" data-whisper-retention aria-describedby="mailbox-retention-hint"><option value="forever">一直保留</option><option value="24h" selected>24 小时后消失</option></select><small id="mailbox-retention-hint">开心的默认一直保留，在意的默认 24 小时，都可以调整。</small></div>
 <div class="whisper-compose-foot"><span data-whisper-count>0 / 600</span><button type="submit" class="btn primary" data-whisper-send>发送</button></div>
-<p id="mailbox-policy" class="whisper-policy">发送后 24 小时自动消失，不留历史。未发送的文字不会保存。</p>
+<p id="mailbox-policy" class="whisper-policy">选择一直保留的留言会留在留言箱；限时留言发送满 24 小时后消失。未发送的文字不会保存。</p>
 </form></details><p class="whisper-status" role="status" data-whisper-status hidden></p>
 </section>
 </section>

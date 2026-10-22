@@ -42,3 +42,5 @@
 .hero .hero-portrait,body.has-room .hero .hero-portrait{width:100%;max-width:400px;margin:0;padding:0;justify-self:end;background:none;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 12px 36px #6e57400c}
 .hero-portrait img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
 @media(max-width:640px){.hero{grid-template-columns:1fr;gap:24px}.hero .hero-portrait,body.has-room .hero .hero-portrait{order:-1;justify-self:center;width:100%;max-width:260px;border-radius:18px}.hero-copy{min-width:0}.hero .hero-actions{margin-top:18px}body.has-room .hero .hero-portrait{max-width:220px}}
+
+.retention-picker{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 16px;align-items:center;margin:18px 0}.retention-picker label{margin:0;font-size:13px}.retention-picker select{width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);font-size:16px}.retention-picker small{grid-column:1/-1;font-size:11px;color:var(--muted);line-height:1.8}
