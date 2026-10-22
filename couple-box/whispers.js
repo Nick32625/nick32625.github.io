@@ -1,3 +1,4 @@
+import {timeHTML} from './display-time.js?v=20261022-display';
 // Messages may be permanent or timed; plaintext stays in memory, never in local drafts.
 export function mountWhispers({getSession,request,seal,unseal,esc,names,chooseRole}) {
  const root=document.querySelector('#mailbox'),title='留言箱';
@@ -7,19 +8,21 @@ export function mountWhispers({getSession,request,seal,unseal,esc,names,chooseRo
  const input=root.querySelector('textarea'),form=root.querySelector('form');
  const retention=root.querySelector('[data-whisper-retention]');
  const defaultRetention=kind=>['joy','warmth'].includes(kind)?'forever':'24h';
+ const more=root.querySelector('[data-whisper-more]');
  const list=root.querySelector('[data-whisper-list]'),status=root.querySelector('[data-whisper-status]');
  const send=root.querySelector('[data-whisper-send]'),count=root.querySelector('[data-whisper-count]');
  const compose=root.querySelector('details'),label=root.querySelector('[data-whisper-label]');
- let generation=0,notes=[],clockOffset=0,busy=false,loading=false,pending=null,signature='';
+ let generation=0,notes=[],clockOffset=0,busy=false,loading=false,pending=null,signature='',visible=8;
  const path=s=>`/api/rooms/${s.id}/notes`,time=()=>Date.now()+clockOffset;
- function message(text,error=false){status.textContent=text;status.classList.toggle('error',error);status.hidden=!text;}
+ function message(text,error=false){status.textContent=text;status.classList.toggle('error',error);status.hidden=!text;root.querySelector('[data-whisper-refresh]').hidden=!error;}
  function controls(){const s=getSession();input.disabled=!s||busy;retention.disabled=!s||busy;for(const radio of radios)radio.disabled=!s||busy;send.disabled=busy||!!s&&(!input.value.trim()||!tone());send.textContent=busy?'发送中…':s?'发送给 '+names[s.slot==='a'?'b':'a']:'选择身份';count.textContent=input.value.length+' / 600';label.textContent=s?'给 '+names[s.slot==='a'?'b':'a']+' 的一句话':'给对方的一句话';}
  function remaining(expiry){const minutes=Math.max(1,Math.ceil((expiry-time())/60000));return minutes>=60?`${Math.floor(minutes/60)} 小时${minutes%60?' '+minutes%60+' 分钟':''}后消失`:`${minutes} 分钟后消失`;}
  function render(){
   const s=getSession();notes=notes.filter(n=>n.expiresAt===null||n.expiresAt>time());
-  const key=JSON.stringify([s?.slot,notes]);
+  more.hidden=!s||notes.length<=visible;
+  const key=JSON.stringify([s?.slot,notes,visible]);
   if(key!==signature){signature=key;
-   list.innerHTML=!s?'<p class="whisper-empty">选择身份后，看看对方留了什么话。</p>':!notes.length?'<p class="whisper-empty">这里暂时没有留言，想说的时候就写一句。</p>':notes.map(n=>`<article class="whisper-note ${n.slot===s.slot?'outgoing':'incoming'}"><div class="whisper-note-head"><strong>${n.slot===s.slot?'我 → '+names[s.slot==='a'?'b':'a']:names[n.slot]+' → 我'}</strong>${n.expiresAt===null?'<span>一直保留</span>':`<span data-expiry="${n.expiresAt}">${remaining(n.expiresAt)}</span>`}</div><span class="message-tone tone-${esc(n.kind)}">${esc(tones[n.kind]||'留言')}</span><p class="whisper-text">${esc(n.text)}</p>${n.slot===s.slot?`<button type="button" class="text-btn" data-withdraw="${esc(n.id)}">撤回</button>`:''}</article>`).join('');
+   list.innerHTML=!s?'<p class="whisper-empty">选择身份后查看留言</p>':!notes.length?'<p class="whisper-empty">还没有留言</p>':notes.slice(0,visible).map(n=>`<article class="whisper-note ${n.slot===s.slot?'outgoing':'incoming'}"><div class="whisper-note-head"><div class="record-author"><strong>${n.slot===s.slot?'我 → '+names[s.slot==='a'?'b':'a']:names[n.slot]+' → 我'}</strong>${timeHTML(n.createdAt)}</div><span class="message-tone tone-${esc(n.kind)}">${esc(tones[n.kind]||'留言')}</span></div><p class="whisper-text">${esc(n.text)}</p><div class="record-foot">${n.expiresAt===null?'<span class="retention-badge">长期</span>':`<span class="expiry-label" data-expiry="${n.expiresAt}">${remaining(n.expiresAt)}</span>`}${n.slot===s.slot?`<button type="button" class="text-btn" data-withdraw="${esc(n.id)}">撤回</button>`:''}</div></article>`).join('');
   }
   for(const el of list.querySelectorAll('[data-expiry]'))el.textContent=remaining(Number(el.dataset.expiry));
  }
@@ -31,10 +34,10 @@ export function mountWhispers({getSession,request,seal,unseal,esc,names,chooseRo
    const decoded=await Promise.all(data.notes.map(async n=>({...n,text:await unseal(n.payload,'whisper:'+n.id,'v1',n.slot,s)})));
    if(g!==generation||getSession()!==s)return;
    clockOffset=offset;notes=decoded;render();if(!busy)message('');
-  }catch(e){if(g===generation&&getSession()===s&&!busy)message(title+'暂未同步，请点刷新重试。',true);}
+  }catch(e){if(g===generation&&getSession()===s&&!busy)message(title+'暂未同步，正在重连。',true);}
   finally{if(g===generation)loading=false;}
  }
- function reset(){generation++;notes=[];clockOffset=0;busy=false;loading=false;pending=null;input.value='';for(const r of radios)r.checked=false;retention.value='24h';compose.open=false;message('');controls();render();refresh();}
+ function reset(){generation++;visible=8;notes=[];clockOffset=0;busy=false;loading=false;pending=null;input.value='';for(const r of radios)r.checked=false;retention.value='24h';compose.open=false;message('');controls();render();refresh();}
  input.addEventListener('input',()=>{controls();if(pending?.text!==input.value.trim())pending=null;});
  radios.forEach(r=>r.addEventListener('change',()=>{retention.value=defaultRetention(tone());pending=null;controls();}));
  retention.addEventListener('change',()=>{pending=null;});
@@ -49,7 +52,7 @@ export function mountWhispers({getSession,request,seal,unseal,esc,names,chooseRo
    // Invalidate any earlier poll before displaying the confirmed send.
    generation++;loading=false;notes=[{...result,text},...notes.filter(n=>n.id!==result.id)];
    clockOffset=result.createdAt>Date.now()?result.createdAt-Date.now():clockOffset;
-   pending=null;input.value='';for(const r of radios)r.checked=false;retention.value='24h';compose.open=false;render();message('已送达云端，对方打开页面就能看到。');
+   pending=null;input.value='';for(const r of radios)r.checked=false;retention.value='24h';compose.open=false;visible=8;render();message('已发送');
   }catch(e){if(g===generation&&getSession()===s){message(e.status===429?e.message:'未确认发送成功，内容还在输入框里，请重试。',true);if(e.status===410||e.status===409)pending=null;}}
   finally{if(getSession()===s){busy=false;controls();}}
  });
@@ -57,9 +60,10 @@ export function mountWhispers({getSession,request,seal,unseal,esc,names,chooseRo
   const button=event.target.closest('[data-withdraw]');if(!button)return;
   const s=getSession(),g=generation;button.disabled=true;
   try{await request(path(s)+'/'+button.dataset.withdraw+'?role='+s.slot,{method:'DELETE',token:s.token});if(g!==generation||getSession()!==s)return;generation++;loading=false;notes=notes.filter(n=>n.id!==button.dataset.withdraw);render();message('已撤回。');}
-  catch{if(g===generation)message('撤回未确认，请刷新后重试。',true);}
+  catch{if(g===generation)message('撤回未确认，请重试。',true);}
   finally{button.disabled=false;}
  });
+ more.onclick=()=>{visible+=8;render();};
  root.querySelector('[data-whisper-refresh]').onclick=()=>refresh();
  setInterval(()=>{render();},1000);
  setInterval(()=>{if(!document.hidden)refresh({quiet:true});},20000);

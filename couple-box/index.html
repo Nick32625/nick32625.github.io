@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://czy-lmj-couple-box.pages.dev http://127.0.0.1:43131; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>CZY 和 LMJ 的专属提问箱</title>
 <link rel="canonical" href="https://nick32625.github.io/couple-box/">
-<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261022-retention">
-<script type="module" src="./app.js?v=20261022-retention"></script>
+<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="stylesheet" href="./style.css?v=20261022-display">
+<script type="module" src="./app.js?v=20261022-display"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
@@ -18,19 +18,19 @@
 <button class="account-btn" id="account-btn"><span class="status-dot"></span><span id="account-label">选择身份</span><span class="account-arrow">↗</span></button>
 </div></header>
 <main id="main" tabindex="-1">
-<section class="anniversary-banner" aria-label="我们的恋爱纪念日"><span class="anniversary-heart" aria-hidden="true">♡</span><div><p>CZY &amp; LMJ · 在一起的第 <strong id="relationship-days">—</strong> 天</p><small>从 <time datetime="2026-10-06">2026.10.06</time> 开始，把日子过成我们的故事。</small></div><span class="anniversary-date">10.06</span></section>
+<section class="anniversary-banner" aria-label="我们的恋爱纪念日"><span class="anniversary-heart" aria-hidden="true">♡</span><div><p>CZY &amp; LMJ · 在一起的第 <strong id="relationship-days">—</strong> 天</p><small><time datetime="2026-10-06">2026.10.06</time> 起</small></div><span class="anniversary-date">10.06</span></section>
 <section class="view" id="view-today" aria-label="今日两问">
 <div class="hero">
-<div class="hero-copy"><p class="eyebrow"><span></span> LITTLE QUESTIONS, CLOSER HEARTS</p><h1>每天两道题，<br>多懂你<span class="accent">一点。</span></h1><p class="hero-desc">把没来得及聊的话，留在这里。<br>各自写下答案，再一起打开彼此的小世界。</p><div class="hero-actions"><button class="btn primary" id="start-btn">打开今天的提问 <span>↗</span></button><span class="hero-note">不用答得完美，真心就好。</span></div></div>
+<div class="hero-copy"><p class="eyebrow"><span></span> LITTLE QUESTIONS, CLOSER HEARTS</p><h1>每天两道题，<br>多懂你<span class="accent">一点。</span></h1><p class="hero-desc">把没来得及聊的话，留在这里。</p><div class="hero-actions"><button class="btn primary" id="start-btn">打开今天的提问 <span>↗</span></button></div></div>
 <div class="hero-art hero-portrait"><img src="./assets/czy-lmj-portrait-v2.webp" width="1254" height="1254" alt="LMJ 和 CZY 并肩比耶的手绘合照" fetchpriority="high" decoding="async"></div>
 </div>
-<div class="daily-heading" id="daily-anchor"><div><p class="eyebrow" id="date-label">TODAY'S LITTLE CONVERSATION</p><h2 id="daily-title">今天，想听你说</h2></div><span class="daily-count">每天 2 问 <span>·</span> 上海时间 00:00 更新</span></div>
-<div class="room-strip" id="room-strip" hidden><div><span class="paired-hearts">♡ ♡</span><span id="room-names"></span><span id="join-status" class="muted"></span></div><div><span id="sync-state" role="status">正在连接云端</span><button class="text-btn" id="refresh-btn">刷新</button><button class="text-btn" id="invite-btn">保存入口 ↗</button></div></div>
+<div class="daily-heading" id="daily-anchor"><div><p class="eyebrow" id="date-label">TODAY'S LITTLE CONVERSATION</p><h2 id="daily-title">今天，想听你说</h2></div><span class="daily-count">每日 00:00 更新</span></div>
+<div class="room-strip" id="room-strip" hidden><div><span class="paired-hearts">♡ ♡</span><span id="room-names"></span></div><div><span id="sync-state" role="status">正在连接云端</span><button class="text-btn" id="refresh-btn" hidden>重试</button><button class="text-btn" id="invite-btn">保存入口 ↗</button></div></div>
 <div class="message error" id="page-error" role="alert" hidden></div>
 <div id="daily-cards" class="daily-cards"><div class="loading-card">正在准备今天的问题…</div></div>
-<div class="gentle-note"><span>✳</span><p>一次只聊一点。可以跳过，可以晚点答，也可以以后改变答案。<br><strong>先理解，再回应；这里没有标准答案。</strong></p></div>
+
 <section class="whispers personal-questions" id="personal-questions" aria-labelledby="personal-title">
-<div class="whisper-heading"><div><h2 id="personal-title">想问问你 <span>我们的专属问答</span></h2><p>有想了解的，直接问对方。问题和回答会一直留在这里。</p></div><button type="button" class="text-btn" data-personal-refresh>刷新</button></div>
+<div class="whisper-heading"><h2 id="personal-title">想问问你</h2><button type="button" class="text-btn" data-personal-refresh hidden>重试</button></div>
 <details class="whisper-compose personal-compose"><summary>向对方提问</summary><form data-personal-compose>
 <label for="personal-input" data-personal-label>想问对方什么？</label>
 <textarea id="personal-input" maxlength="600" rows="3" placeholder="有件事，我想听听你的想法……"></textarea>
@@ -41,27 +41,27 @@
 <button type="button" class="text-btn" data-personal-more hidden>查看更多问答</button>
 </section>
 <section class="whispers mailbox" id="mailbox" aria-labelledby="mailbox-title">
-<div class="whisper-heading"><div><h2 id="mailbox-title">留言箱 <span>留一句想说的话</span></h2><p>开心的、在意的，都可以留一句。</p></div><button type="button" class="text-btn" data-whisper-refresh>刷新</button></div>
-<div data-whisper-list></div>
+<div class="whisper-heading"><h2 id="mailbox-title">留言箱</h2><button type="button" class="text-btn" data-whisper-refresh hidden>重试</button></div>
 <details class="whisper-compose"><summary>写一条留言</summary><form>
 <label for="mailbox-input" data-whisper-label>给对方的一句话</label>
-<textarea id="mailbox-input" maxlength="600" rows="4" placeholder="发生了什么，心里怎么想，希望对方知道什么……" aria-describedby="mailbox-policy" autocomplete="off"></textarea>
-<fieldset class="tone-picker"><legend>这条留言是什么心情？</legend>
-<label><input type="radio" name="message-tone" value="joy" required><span>小确幸<small>一点小开心</small></span></label>
-<label><input type="radio" name="message-tone" value="warmth"><span>超开心<small>真的很开心</small></span></label>
-<label><input type="radio" name="message-tone" value="grumble"><span>小在意<small>有一点不舒服</small></span></label>
-<label><input type="radio" name="message-tone" value="serious"><span>认真说说<small>希望你重视这件事</small></span></label>
+<textarea id="mailbox-input" maxlength="600" rows="4" placeholder="想说的话……" autocomplete="off"></textarea>
+<fieldset class="tone-picker"><legend>心情</legend>
+<label><input type="radio" name="message-tone" value="joy" required><span>小确幸</span></label>
+<label><input type="radio" name="message-tone" value="warmth"><span>超开心</span></label>
+<label><input type="radio" name="message-tone" value="grumble"><span>小在意</span></label>
+<label><input type="radio" name="message-tone" value="serious"><span>认真说说</span></label>
 </fieldset>
-<div class="retention-picker"><label for="mailbox-retention">保留多久</label><select id="mailbox-retention" data-whisper-retention aria-describedby="mailbox-retention-hint"><option value="forever">一直保留</option><option value="24h" selected>24 小时后消失</option></select><small id="mailbox-retention-hint">开心的默认一直保留，在意的默认 24 小时，都可以调整。</small></div>
+<div class="retention-picker"><label for="mailbox-retention">保留多久</label><select id="mailbox-retention" data-whisper-retention><option value="forever">一直保留</option><option value="24h" selected>24 小时后消失</option></select></div>
 <div class="whisper-compose-foot"><span data-whisper-count>0 / 600</span><button type="submit" class="btn primary" data-whisper-send>发送</button></div>
-<p id="mailbox-policy" class="whisper-policy">选择一直保留的留言会留在留言箱；限时留言发送满 24 小时后消失。未发送的文字不会保存。</p>
+
 </form></details><p class="whisper-status" role="status" data-whisper-status hidden></p>
+<div data-whisper-list></div><button type="button" class="text-btn record-more" data-whisper-more hidden>更早的留言</button>
 </section>
 </section>
-<section class="view" id="view-library" aria-label="题库" hidden><div class="page-title"><p class="eyebrow">A LITTLE MORE ABOUT YOU</p><h1>慢慢认识你</h1><p>91 道题，3 个阶段。每天从已开放的题里随机选两道，聊点日常，也聊点心里话。</p></div><div class="library-tools"><label class="search"><span>⌕</span><input type="search" id="question-search" placeholder="找一个想聊的话题…" aria-label="搜索题目"></label><div class="filter-row" id="topic-filters" aria-label="按主题筛选"></div></div><div class="library-count" id="library-count"></div><div id="question-library"></div><details class="source-details"><summary>题目从哪里来？</summary><div><p>问题参考下列公开资料的主题与对话方法，重新编写为适合日常相处的中文问句，不是原版量表或关系测试。阶段时间是本提问箱的安排，并非研究规定的恋爱进度。</p><ul id="source-list"></ul></div></details></section>
-<section class="view" id="view-history" aria-label="我们的回答" hidden><div class="page-title"><p class="eyebrow">OUR LITTLE ARCHIVE</p><h1>写给彼此的日子</h1><p>那些认真写下来的话，会留在这里。</p></div><div id="history-content"></div></section>
+<section class="view" id="view-library" aria-label="题库" hidden><div class="page-title"><p class="eyebrow">A LITTLE MORE ABOUT YOU</p><h1>慢慢认识你</h1></div><div class="library-tools"><label class="search"><span>⌕</span><input type="search" id="question-search" placeholder="找一个想聊的话题…" aria-label="搜索题目"></label><div class="filter-row" id="topic-filters" aria-label="按主题筛选"></div></div><div class="library-count" id="library-count"></div><div id="question-library"></div><details class="source-details"><summary>题目从哪里来？</summary><div><p>问题参考下列公开资料的主题与对话方法，重新编写为适合日常相处的中文问句，不是原版量表或关系测试。阶段时间是本提问箱的安排，并非研究规定的恋爱进度。</p><ul id="source-list"></ul></div></details></section>
+<section class="view" id="view-history" aria-label="我们的回答" hidden><div class="page-title"><p class="eyebrow">OUR LITTLE ARCHIVE</p><h1>写给彼此的日子</h1></div><div id="history-content"></div></section>
 </main>
-<footer class="site-footer"><a href="./" class="brand-mini">♡ CZY &amp; LMJ</a><p>不急着懂全部，今天多懂一点就好。</p><a class="text-btn" href="./network.html">连接检测</a><button class="text-btn" id="help-btn">使用说明与隐私</button></footer>
+<footer class="site-footer"><a href="./" class="brand-mini">♡ CZY &amp; LMJ</a><button class="text-btn" id="help-btn">说明与隐私</button></footer>
 <dialog id="modal"><div class="modal-top"><span class="brand-mini">♡ CZY &amp; LMJ</span><button class="close-btn" id="close-modal" aria-label="关闭弹窗">×</button></div><div id="modal-body"></div></dialog>
 <div id="toast" role="status" aria-live="polite" hidden></div>
 </body></html>
